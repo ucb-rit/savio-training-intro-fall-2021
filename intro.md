@@ -47,10 +47,9 @@ This training session will cover the following topics:
      - Low-priority queue
      - HTC jobs
      - Monitoring jobs and cluster status
- - Basic use of standard software: Python and R
+ - Basic use of standard software: Python
      - Jupyter notebooks using OOD
      - Parallelization in Python with ipyparallel
-     - Parallelization in R with foreach
      - Dask for parallelization in Python
  - More information
      - How to get additional help
@@ -91,7 +90,7 @@ Faculty/principal investigators can allow researchers working with them to get u
 
 # System capabilities and hardware
 
-- Savio is a 600-node, >15,000-core Linux cluster rated at nearly 540 peak teraFLOPS.
+- Savio is a >600-node, >15,000-core Linux cluster rated at nearly 540 peak teraFLOPS.
    - about 40% of the  compute nodes provided by the institution for general access
    - about 60% compute nodes contributed by researchers in the Condo program
 
@@ -160,7 +159,7 @@ Savio is a Linux cluster - by cluster we mean a set of computers networked toget
     - Primary data storage during computation
 - All 3 are available from any of the nodes and changes to files on one node will be seen on all the other nodes
 - Large amounts of disk space is available for purchase from the [*condo storage* offering](https://docs-research-it.berkeley.edu/services/high-performance-computing/condos/condo-storage-service/).
-  - The minimum purchase is about $6,200, which provides roughly 42 TB for five years
+  - The minimum purchase is about $23,000, which provides roughly 448 TB for five years. 
 
 # Using disk space
 
@@ -177,7 +176,7 @@ Savio is a Linux cluster - by cluster we mean a set of computers networked toget
   - Existing projects can't be converted to P2/P3 projects.
 - BRC has a new platform for highly sensitive data (P4) called SRDC.
 
-More info is available in the slides from Dec. 2019 "Working with Sensitive + Protected Data" workshop: [https://tinyurl.com/srdc-dec2019](https://tinyurl.com/srdc-dec2019)
+More info is available in the slides from Dec. 2019 "Working with Sensitive + Protected Data" workshop: [https://tinyurl.com/srdc-dec2019](https://tinyurl.com/srdc-dec2019) or in [our documentation](https://docs-research-it.berkeley.edu/services/srdc/).
 
 # Logging in: Getting Set Up
 
@@ -413,22 +412,29 @@ sacctmgr -p show associations user=$USER
 Here's an example of the output for a user who has access to an FCA, a condo, and a special partner account:
 ```
 Cluster|Account|User|Partition|Share|GrpJobs|GrpTRES|GrpSubmit|GrpWall|GrpTRESMins|MaxJobs|MaxTRES|MaxTRESPerNode|MaxSubmit|MaxWall|MaxTRESMins|QOS|Def QOS|GrpTRESRunMins|
-brc|co_stat|paciorek|savio2_1080ti|1||||||||||||savio_lowprio|savio_lowprio||
-brc|co_stat|paciorek|savio2_knl|1||||||||||||savio_lowprio|savio_lowprio||
-brc|co_stat|paciorek|savio2_bigmem|1||||||||||||savio_lowprio|savio_lowprio||
-brc|co_stat|paciorek|savio2_gpu|1||||||||||||savio_lowprio,stat_gpu2_normal|stat_gpu2_normal||
-brc|co_stat|paciorek|savio2_htc|1||||||||||||savio_lowprio|savio_lowprio||
-brc|co_stat|paciorek|savio|1||||||||||||savio_lowprio|savio_lowprio||
-brc|co_stat|paciorek|savio_bigmem|1||||||||||||savio_lowprio|savio_lowprio||
-brc|co_stat|paciorek|savio2|1||||||||||||savio_lowprio,stat_savio2_normal|stat_savio2_normal||
-brc|fc_paciorek|paciorek|savio2_1080ti|1||||||||||||savio_debug,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio2_knl|1||||||||||||savio_debug,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio2_gpu|1||||||||||||savio_debug,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio2_htc|1||||||||||||savio_debug,savio_long,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio2_bigmem|1||||||||||||savio_debug,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio2|1||||||||||||savio_debug,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio|1||||||||||||savio_debug,savio_normal|savio_normal||
-brc|fc_paciorek|paciorek|savio_bigmem|1||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio3_gpu|1|||||||||||||gtx2080_gpu3_normal,savio_lowprio,v100_gpu3_normal|gtx2080_gpu3_normal||
+brc|fc_paciorek|paciorek|savio3_htc|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio3_bigmem|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio3|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio2_1080ti|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio2_knl|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio2_gpu|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio2_htc|1|||||||||||||savio_debug,savio_long,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio2_bigmem|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio2|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|fc_paciorek|paciorek|savio_bigmem|1|||||||||||||savio_debug,savio_normal|savio_normal||
+brc|co_stat|paciorek|savio3_htc|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio3_bigmem|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio3|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio2_1080ti|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio2_knl|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio2_bigmem|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio2_gpu|1|||||||||||||savio_lowprio,stat_gpu2_normal|stat_gpu2_normal||
+brc|co_stat|paciorek|savio2_htc|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio_bigmem|1|||||||||||||savio_lowprio|savio_lowprio||
+brc|co_stat|paciorek|savio2|1|||||||||||||savio_lowprio,stat_savio2_normal|stat_savio2_normal||
 ```
 
 If you are part of a condo, you'll notice that you have *low-priority* access to certain partitions. For example, Chris is part of the statistics condo *co_stat*, which owns some savio2 nodes and savio2_gpu nodes and therefore has normal access to those, but he can also burst beyond the condo and use other partitions at low-priority (see below).
@@ -448,7 +454,7 @@ Here's an example job script that I'll run. You'll need to modify the --account 
 #SBATCH --job-name=test
 #
 # Account:
-#SBATCH --account=fc_brownlab
+#SBATCH --account=fc_paciorek
 #
 # Partition:
 #SBATCH --partition=savio2
@@ -457,7 +463,7 @@ Here's an example job script that I'll run. You'll need to modify the --account 
 #SBATCH --time=00:05:00
 #
 ## Command(s) to run:
-module load python/3.6
+module load python/3.7
 python calc.py >& calc.out
 ```
 
@@ -548,7 +554,7 @@ There are lots more examples of job submission scripts for different kinds of pa
 You can also do work interactively. This simply moves you from a login node to a compute node.
 
 ```
-srun -A fc_brownlab -p savio2  --nodes=1 -t 10:0 --pty bash
+srun -A fc_paciorek -p savio2  --nodes=1 -t 10:0 --pty bash
 
 # note that you end up in the same working directory as when you submitted the job
 
@@ -673,7 +679,7 @@ Currently 0 running jobs and 1 pending job (most recent job first):
 +---------|------|-------------|-----------|--------------|------|---------|-----------+
 | Job ID  | Name |   Account   |   Nodes   |     QOS      | Time |  State  |  Reason   |
 +---------|------|-------------|-----------|--------------|------|---------|-----------+
-| 7510375 | test | fc_brownlab | 1x savio2 | savio_normal | 0:00 | PENDING | Resources |
+| 7510375 | test | fc_paciorek | 1x savio2 | savio_normal | 0:00 | PENDING | Resources |
 +---------|------|-------------|-----------|--------------|------|---------|-----------+
 
 7510375:
@@ -685,7 +691,7 @@ Recent jobs (most recent job first):
 +---------|------|-------------|-----------|----------|---------------------|-----------+
 | Job ID  | Name |   Account   |   Nodes   | Elapsed  |         End         |   State   |
 +---------|------|-------------|-----------|----------|---------------------|-----------+
-| 7509474 | test | fc_brownlab | 1x savio2 | 00:00:16 | 2021-02-09 23:47:45 | COMPLETED |
+| 7509474 | test | fc_paciorek | 1x savio2 | 00:00:16 | 2021-02-09 23:47:45 | COMPLETED |
 +---------|------|-------------|-----------|----------|---------------------|-----------+
 
 7509474:
@@ -734,7 +740,7 @@ To learn more, see our page on understanding [when your jobs will run](https://d
 
 # Example use of standard software: Jupyter Notebooks through Open OnDemand (OOD)
 
-Savio now has an Open OnDemand portal, allowing users to launch Jupyter notebooks and RStudio servers for interactive debugging and batch computing. (Note: this supersedes the JupyterHub instance on Savio, which will soon become inactive).
+Savio now has an Open OnDemand portal, allowing users to launch Jupyter notebooks and RStudio servers for interactive debugging and batch computing. (Note: this supersedes the JupyterHub instance on Savio, which is inactive).
 
 Let's see a brief demo of a Jupyter notebook:
 
@@ -744,15 +750,13 @@ Let's see a brief demo of a Jupyter notebook:
  - Specify your "SLURM Project/Account Name"
  - Start up a notebook
 
-Alternatively, one can [run a Jupyter notebook through the visualization node](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/using-jupyter-notebooks-and-jupyterhub-savio/#viz).
+You can also run [parallel computations via an IPython notebook](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/ood/jupyter-parallelization/).
 
-You can also run [parallel computations via an IPython notebook](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/using-jupyter-notebooks-and-jupyterhub-savio/parallelization/).
+# Example use of standard software: Python in parallel
 
-# Example use of standard software: Python (time permitting)
+Let's see a basic example of doing an analysis in Python across multiple cores on multiple nodes. We'll use the airline departure data in [bayArea.csv](https://www.stat.berkeley.edu/share/paciorek/bayArea.csv). Similar functionality is [available for R](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/software/using-software/using-r-savio/), for example using the `future` package, 
 
-Let's see a basic example of doing an analysis in Python across multiple cores on multiple nodes. We'll use the airline departure data in [bayArea.csv](https://www.stat.berkeley.edu/share/paciorek/bayArea.csv).
-
-Here we'll use *IPython* for parallel computing. The example is a bit contrived in that a lot of the time is spent moving data around rather than doing computation, but it should illustrate how to do a few things.
+Here we'll use the *ipyparallel* package for parallel computing. The example is a bit contrived in that a lot of the time is spent moving data around rather than doing computation, but it should illustrate how to do a few things.
 
 First we'll user-install a Python package called `statsmodels` to get a more recent version:
 
@@ -768,10 +772,10 @@ pip install --user statsmodels --upgrade
 Now we'll start up an interactive session, though often this sort of thing would be done via a batch job.
 
 ```
-srun -A fc_brownlab -p savio2 --nodes=2 --ntasks-per-node=24 -t 30:0 --pty bash
+srun -A fc_paciorek -p savio2 --nodes=2 --ntasks-per-node=24 -t 30:0 --pty bash
 ```
 
-Now we'll start up a cluster using IPython's parallel tools. To do this across multiple nodes within a SLURM job, it goes like this:
+Now we'll start up a cluster using *ipyparallel* tools. To do this across multiple nodes within a SLURM job, it goes like this:
 
 ```
 module load python/3.6 gcc openmpi
@@ -849,88 +853,12 @@ And we'll stop our cluster.
 ipcluster stop
 ```
 
-# Example use of standard software: R (time permitting)
-
-Let's see a basic example of doing an analysis in R across multiple cores on multiple nodes. We'll use the airline departure data in *bayArea.csv*.
-
-We'll do this interactively though often this sort of thing would be done via a batch job.
-
-```bash
-# remember to do I/O off scratch
-cp bayArea.csv /global/scratch/users/paciorek/.
-
-srun -A co_stat -p savio2  --nodes=2 --ntasks-per-node=24 -t 30:0 --pty bash
-module load r r-packages
-mpirun R CMD BATCH --no-save parallel-multi.R parallel-multi.Rout &
 ```
 
-Now here's the R code (see *parallel-multi.R*) we're running:
 
-```
-library(doMPI)
+# Alternative Python Parallelization: Dask (optional)
 
-cl = startMPIcluster()  # by default will start one fewer worker, using one for the main
-registerDoMPI(cl)
-clusterSize(cl) # just to check
-
-dat <- read.csv('/global/scratch/users/paciorek/bayArea.csv', header = FALSE,
-                stringsAsFactors = FALSE)
-names(dat)[16:18] <- c('delay', 'origin', 'dest')
-table(dat$dest)
-
-destVals <- unique(dat$dest)
-
-# restrict to only columns we need to reduce copying time
-dat2 <- subset(dat, select = c('delay', 'origin', 'dest'))
-
-# some overhead in copying 'dat2' to worker processes...
-results <- foreach(destVal = destVals) %dopar% {
-    sub <- subset(dat2, dest == destVal)
-    summary(sub$delay)
-}
-
-
-results
-
-closeCluster(cl)
-mpi.quit()
-```
-
-If you just want to parallelize within a node:
-
-```
-srun -A co_stat -p savio2 --nodes=1 -t 30:0 --pty bash
-module load r
-R CMD BATCH --no-save parallel-one.R parallel-one.Rout &
-```
-
-Now here's the R code (see *parallel-one.R*) we're running:
-```
-library(doParallel)
-
-nCores <- Sys.getenv('SLURM_CPUS_ON_NODE')
-registerDoParallel(nCores)
-
-dat <- read.csv('/global/scratch/users/paciorek/bayArea.csv', header = FALSE,
-                stringsAsFactors = FALSE)
-names(dat)[16:18] <- c('delay', 'origin', 'dest')
-table(dat$dest)
-
-destVals <- unique(dat$dest)
-
-results <- foreach(destVal = destVals) %dopar% {
-    sub <- subset(dat, dest == destVal)
-    summary(sub$delay)
-}
-
-results
-```
-
-You may also want to look into the `future` package for R, which provides a user-friendly interface to parallelization across one or more nodes. Here's a [tutorial on using future](https://github.com/berkeley-scf/tutorial-dask-future).
-
-# Alternative Python Parallelization: Dask (time permitting)
-
-In addition to iPyParallel, one of the newer tools in the Python space is [Dask](http://dask.pydata.org/en/latest/), which provides out-of-the-box parallelization more easily without much setup or too much additional work. Dask, as a Python package, extends Numpy/Pandas syntax for arrays and dataframes that already exists and introduces native parallelization to these data structures, which speeds up analyses. Since Dask dataframes/arrays are descendants of the Pandas dataframe and Numpy array, they are compatible with any existing code and can serve as a plug-in replacement, with performance enhancements for multiple cores/nodes. It's also worth noting that Dask is useful for scaling up to large clusters like Savio but can also be useful for speeding up analyses on your local computer.
+In addition to iPyParallel, a widely-used tool in the Python space is [Dask](http://dask.pydata.org/en/latest/), which provides out-of-the-box parallelization more easily without much setup or too much additional work. Dask, as a Python package, extends Numpy/Pandas syntax for arrays and dataframes that already exists and introduces native parallelization to these data structures, which speeds up analyses. Since Dask dataframes/arrays are descendants of the Pandas dataframe and Numpy array, they are compatible with any existing code and can serve as a plug-in replacement, with performance enhancements for multiple cores/nodes. It's also worth noting that Dask is useful for scaling up to large clusters like Savio but can also be useful for speeding up analyses on your local computer.
 
 We have materials available from [our spring 2019 training on using Dask on Savio](https://github.com/ucb-rit/savio-training-dask-2019) and from a [tutorial on using Dask](https://github.com/berkeley-scf/tutorial-dask-future).
 
