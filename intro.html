@@ -103,7 +103,7 @@ October 14, 2021
 <h1>Introduction</h1>
 <p>We’ll do this mostly as a demonstration. We encourage you to login to your account and try out the various examples yourself as we go through them.</p>
 <p>Much of this material is based on the extensive Savio documention we have prepared and continue to prepare, available at <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/">https://docs-research-it.berkeley.edu/services/high-performance-computing/</a>.</p>
-<p>The materials for this tutorial are available using git at the short URL (<a href="https://tinyurl.com/brc-feb21">tinyurl.com/brc-feb21</a>), the GitHub URL (<a href="https://github.com/ucb-rit/savio-training-intro-fall-2021">https://github.com/ucb-rit/savio-training-intro-fall-2021</a>), or simply as a <a href="https://github.com/ucb-rit/savio-training-intro-fall-2021/archive/main.zip">zip file</a>.</p>
+<p>The materials for this tutorial are available using git at the short URL (<a href="https://tinyurl.com/brc-oct21">tinyurl.com/brc-feb21</a>), the GitHub URL (<a href="https://github.com/ucb-rit/savio-training-intro-fall-2021">https://github.com/ucb-rit/savio-training-intro-fall-2021</a>), or simply as a <a href="https://github.com/ucb-rit/savio-training-intro-fall-2021/archive/main.zip">zip file</a>.</p>
 </div>
 <div id="outline" class="slide section level1">
 <h1>Outline</h1>
@@ -231,7 +231,7 @@ October 14, 2021
 <ul>
 <li>Login nodes
 <ul>
-<li>Used to access the system when loggin in</li>
+<li>Used to access the system when logging in</li>
 <li>For login and non-intensive interactive work such as:
 <ul>
 <li>job submission and monitoring</li>
@@ -247,7 +247,7 @@ October 14, 2021
 <li>Data transfer nodes
 <ul>
 <li>For transferring data to/from Savio</li>
-<li>This is a notable difference from many other cluster
+<li>This is a notable difference from many other clusters
 <ul>
 <li>Login node: <code>hpc.brc.berkeley.edu</code></li>
 <li>Data transfer node: <code>dtn.brc.berkeley.edu</code></li>
@@ -303,7 +303,6 @@ October 14, 2021
 </ul></li>
 <li><code>/global/scratch/users/SAVIO_USERNAME</code>
 <ul>
-<li>12 TB per user</li>
 <li>Connected via Infiniband (very fast)</li>
 <li>Primary data storage during computation</li>
 </ul></li>
@@ -311,7 +310,7 @@ October 14, 2021
 <li>All 3 are available from any of the nodes and changes to files on one node will be seen on all the other nodes</li>
 <li>Large amounts of disk space is available for purchase from the <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/condos/condo-storage-service/"><em>condo storage</em> offering</a>.
 <ul>
-<li>The minimum purchase is about $23,000, which provides roughly 448 TB for five years.</li>
+<li>The minimum purchase is about $5,750, which provides roughly 112 TB for five years.</li>
 </ul></li>
 </ul>
 </div>
@@ -346,7 +345,7 @@ October 14, 2021
 <li>These come built-in with Mac (see <code>Applications -&gt; Utilities -&gt; Terminal</code>).</li>
 <li>For Windows, you can use Powershell (or Command Prompt)
 <ul>
-<li>Other application such as <a href="https://mobaxterm.mobatek.net/">MobaXterm</a> may offer more functionality</li>
+<li>Other applications such as <a href="https://mobaxterm.mobatek.net/">MobaXterm</a> may offer more functionality</li>
 </ul></li>
 </ul></li>
 <li>You also need to set up your smartphone or tablet with <em>Google Authenticator</em> to generate one-time passwords for you.</li>
@@ -445,6 +444,7 @@ tar -xvzf files.tgz</code></pre>
 <li>Savio</li>
 <li>your laptop or desktop</li>
 <li>Other clusters like NERSC and XSEDE</li>
+<li>Box and bDrive (details coming soon)</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -548,7 +548,8 @@ rclone copy /global/scratch/users/hannsode/genomes remote_name:genome_sequences 
 </div>
 <div id="software-modules" class="slide section level1">
 <h1>Software modules</h1>
-<p>A lot of software is available on Savio but needs to be loaded from the relevant software module before you can use it. (We do this not to confuse you but to avoid clashes between incompatible software and allow multiple versions of a piece of software to co-exist on the system.)</p>
+<p>A lot of software is available on Savio but needs to be loaded from the relevant software module before you can use it.</p>
+<p>(We do this not to confuse you but to avoid clashes between incompatible software and allow multiple versions of a piece of software to co-exist on the system.)</p>
 <pre><code>module list  # what&#39;s loaded?
 module avail  # what&#39;s available</code></pre>
 <p>One thing that tricks people is that the modules are arranged in a hierarchical (nested) fashion, so you only see some of the modules as being available <em>after</em> you load the parent module (e.g., MKL, FFT, and HDF5/NetCDF software is nested within the gcc module). Here’s how we see and load MPI.</p>
@@ -561,7 +562,7 @@ module load openmpi</code></pre>
 <div id="submitting-jobs-overview" class="slide section level1">
 <h1>Submitting jobs: overview</h1>
 <p>All computations are done by submitting jobs to the scheduling software that manages jobs on the cluster, called SLURM.</p>
-<p>Why is this necessary? Otherwise your jobs would be slowed down by other people’s jobs running on the same node. This also allows everyone to fairly share Savio.</p>
+<p>Why is this necessary? Otherwise your jobs would be slowed down by other people’s jobs running on the same node. This also allows everyone to share Savio in a fair way.</p>
 <p>The basic workflow is:</p>
 <ul>
 <li>login to Savio; you’ll end up on one of the login nodes in your home directory</li>
@@ -673,6 +674,9 @@ wwall -j &lt;JOB_ID&gt;</code></pre>
 <a class="sourceLine" id="cb16-22" title="22"><span class="ex">mpirun</span> ./a.out</a></code></pre></div>
 <p>When you write your code, you may need to specify information about the number of cores to use. SLURM will provide a variety of variables that you can use in your code so that it adapts to the resources you have requested rather than being hard-coded.</p>
 <p>Here are some of the variables that may be useful: SLURM_NTASKS, SLURM_CPUS_PER_TASK, SLURM_NODELIST, SLURM_NNODES.</p>
+</div>
+<div id="parallel-job-submission-patterns" class="slide section level1">
+<h1>Parallel job submission patterns</h1>
 <p>Some common paradigms are:</p>
 <ul>
 <li>1 node, many CPUs
@@ -695,7 +699,7 @@ wwall -j &lt;JOB_ID&gt;</code></pre>
 <div id="interactive-jobs" class="slide section level1">
 <h1>Interactive jobs</h1>
 <p>You can also do work interactively. This simply moves you from a login node to a compute node.</p>
-<pre><code>srun -A fc_paciorek -p savio2  --nodes=1 -t 10:0 --pty bash
+<pre><code>srun -A fc_paciorek -p savio2_htc  -c 1 -t 10:0 --pty bash
 
 # note that you end up in the same working directory as when you submitted the job
 
@@ -709,18 +713,20 @@ matlab -nodesktop -nodisplay</code></pre>
 <div id="running-graphical-interfaces-interactively-on-the-visualization-node" class="slide section level1">
 <h1>Running graphical interfaces interactively on the visualization node</h1>
 <p>If you are running a graphical interface, we recommend you use Savio’s remote desktop service on our visualization node, as described <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/using-brc-visualization-node-realvnc/">here</a>.</p>
+<p>Even better, for Jupyter Notebooks, RStudio, the MATLAB GUI, and VSCode, use Savio’s <a href="https://ood.brc.berkeley.edu">Open OnDemand interface</a> (more in a later slide).</p>
 </div>
 <div id="low-priority-queue" class="slide section level1">
 <h1>Low-priority queue</h1>
 <p>Condo users have access to the broader compute resource that is limited only by the size of partitions, under the <em>savio_lowprio</em> QoS (queue). However this QoS does not get a priority as high as the general QoSs, such as <em>savio_normal</em> and <em>savio_debug</em>, or all the condo QoSs, and it is subject to preemption when all the other QoSs become busy.</p>
 <p>More details can be found <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/running-your-jobs/submitting-jobs/#low-priority">in the <em>Low Priority Jobs</em> section of the user guide</a>.</p>
 <p>Suppose I wanted to burst beyond the Statistics condo to run on 20 nodes. I’ll illustrate here with an interactive job though usually this would be for a batch job.</p>
-<p>First I’ll see if there are that many nodes even available.</p>
-<pre><code>sinfo -p savio2
+<pre><code>## First I&#39;ll see if there are that many nodes even available.
+sinfo -p savio2
 srun -A co_stat -p savio2 --qos=savio_lowprio --nodes=20 -t 10:00 --pty bash
 
 ## now look at environment variables to see my job can access 20 nodes:
 env | grep SLURM</code></pre>
+<p>The low-priority queue is also quite useful for accessing specific GPU types in the <code>savio3_gpu</code> partition.</p>
 </div>
 <div id="htc-jobs-and-long-running-jobs" class="slide section level1">
 <h1>HTC jobs (and long-running jobs)</h1>
@@ -836,8 +842,8 @@ Recent jobs (most recent job first):
 <ul>
 <li>Connect to <a href="https://ood.brc.berkeley.edu">ood.brc.berkeley.edu</a></li>
 <li>Login as usual with a one-time password</li>
-<li>Click on the “Interactive Apps” drop-down menu and select how to run your notebook (either “compute in batch queues” or “non-batch for exploration, debugging”)</li>
-<li>Specify your “SLURM Project/Account Name”</li>
+<li>Click on the “Interactive Apps” drop-down menu and select how to run your notebook (either “compute on shared Jupyter node” or “compute via Slurm using Slurm partitions”)</li>
+<li>Specify your Slurm options if relevant</li>
 <li>Start up a notebook</li>
 </ul>
 <p>You can also run <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/ood/jupyter-parallelization/">parallel computations via an IPython notebook</a>.</p>

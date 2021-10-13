@@ -286,6 +286,7 @@ tar -xvzf files.tgz
     - Savio
     - your laptop or desktop
     - Other clusters like NERSC and XSEDE
+    - Box and bDrive (details coming soon)
 
 # Data transfer for larger files: Globus, requirements
 
@@ -536,6 +537,8 @@ When you write your code, you may need to specify information about the number o
 
 Here are some of the variables that may be useful: SLURM_NTASKS, SLURM_CPUS_PER_TASK, SLURM_NODELIST, SLURM_NNODES.
 
+# Parallel job submission patterns
+
 Some common paradigms are:
 
  - 1 node, many CPUs
@@ -555,7 +558,7 @@ There are lots more examples of job submission scripts for different kinds of pa
 You can also do work interactively. This simply moves you from a login node to a compute node.
 
 ```
-srun -A fc_paciorek -p savio2  --nodes=1 -t 10:0 --pty bash
+srun -A fc_paciorek -p savio2_htc  -c 1 -t 10:0 --pty bash
 
 # note that you end up in the same working directory as when you submitted the job
 
@@ -574,6 +577,8 @@ jobs (as with batch jobs) except in the *savio2_htc* and various GPU partitions.
 
 If you are running a graphical interface, we recommend you use Savio's remote desktop service on our visualization node, as described [here](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/using-brc-visualization-node-realvnc/).
 
+Even better, for Jupyter Notebooks, RStudio, the MATLAB GUI, and VSCode, use Savio's [Open OnDemand interface](https://ood.brc.berkeley.edu) (more in a later slide).
+
 # Low-priority queue
 
 Condo users have access to the broader compute resource that is limited only by the size of partitions, under the *savio_lowprio* QoS (queue). However this QoS does not get a priority as high as the general QoSs, such as *savio_normal* and *savio_debug*, or all the condo QoSs, and it is subject to preemption when all the other QoSs become busy.
@@ -582,15 +587,17 @@ More details can be found [in the *Low Priority Jobs* section of the user guide]
 
 Suppose I wanted to burst beyond the Statistics condo to run on 20 nodes. I'll illustrate here with an interactive job though usually this would be for a batch job.
 
-First I'll see if there are that many nodes even available.
 
 ```
+## First I'll see if there are that many nodes even available.
 sinfo -p savio2
 srun -A co_stat -p savio2 --qos=savio_lowprio --nodes=20 -t 10:00 --pty bash
 
 ## now look at environment variables to see my job can access 20 nodes:
 env | grep SLURM
 ```
+
+The low-priority queue is also quite useful for accessing specific GPU types in the `savio3_gpu` partition.
 
 # HTC jobs (and long-running jobs)
 
@@ -747,8 +754,8 @@ Let's see a brief demo of a Jupyter notebook:
 
  - Connect to [ood.brc.berkeley.edu](https://ood.brc.berkeley.edu)
  - Login as usual with a one-time password
- - Click on the "Interactive Apps" drop-down menu and select how to run your notebook (either "compute in batch queues" or "non-batch for exploration, debugging")
- - Specify your "SLURM Project/Account Name"
+ - Click on the "Interactive Apps" drop-down menu and select how to run your notebook (either "compute on shared Jupyter node" or "compute via Slurm using Slurm partitions")
+ - Specify your Slurm options if relevant
  - Start up a notebook
 
 You can also run [parallel computations via an IPython notebook](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/ood/jupyter-parallelization/).
