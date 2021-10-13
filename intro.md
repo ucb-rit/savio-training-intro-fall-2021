@@ -772,7 +772,7 @@ First we'll user-install a Python package called `statsmodels` to get a more rec
 cp bayArea.csv /global/scratch/users/paciorek/.  # remember to do I/O off scratch
 # install Python package
 module unload python
-module load python/3.6
+module load python/3.7
 # the system version of statsmodels isn't recent enough
 pip install --user statsmodels --upgrade
 ```
@@ -786,22 +786,22 @@ srun -A fc_paciorek -p savio2 --nodes=2 --ntasks-per-node=24 -t 30:0 --pty bash
 Now we'll start up a cluster using *ipyparallel* tools. To do this across multiple nodes within a SLURM job, it goes like this:
 
 ```
-module load python/3.6 gcc openmpi
+module load python/3.7 gcc openmpi
 ipcontroller --ip='*' &
 sleep 30
 ## The next line starts one worker per SLURM task (which should equal the number of cores)
 srun ipengine &
 sleep 45  # wait until all engines have successfully started
 cd /global/scratch/users/paciorek
-ipython
+python
 ```
 
 If we were doing this on a single node, we could start everything up in a single call to *ipcluster*:
 
 ```
-module load python/3.6
+module load python/3.7
 ipcluster start -n $SLURM_CPUS_ON_NODE &
-ipython
+python
 ```
 
 Here's our Python code (also found in *parallel.py*) for doing an analysis across multiple strata/subsets of the dataset in parallel. Note that the 'load_balanced_view' business is so that the computations are done in a load-balanced fashion, which is important for tasks that take different amounts of time to complete.
@@ -861,7 +861,6 @@ And we'll stop our cluster.
 ipcluster stop
 ```
 
-```
 
 
 # Alternative Python Parallelization: Dask (optional)
