@@ -10,7 +10,7 @@
 
  - [Securing Research Data Working Group](https://dlab.berkeley.edu/working-groups/securing-research-data-working-group) (monthly)
 
- - Research IT is hiring graduate students as domain consultants. See flyers or talk to one of us.
+ - Get paid to develop your skills in research data and computing! Berkeley Research Computing is hiring several graduate student Domain Consultants for flexible appointments, 10% to 25% effort (4-10 hours/week). Email your cover letter and CV to: research-it@berkeley.edu.
 
 # Introduction
 
@@ -18,7 +18,7 @@ We'll do this mostly as a demonstration. We encourage you to login to your accou
 
 Much of this material is based on the extensive Savio documention we have prepared and continue to prepare, available at [https://docs-research-it.berkeley.edu/services/high-performance-computing/](https://docs-research-it.berkeley.edu/services/high-performance-computing/).
 
-The materials for this tutorial are available using git at the short URL ([tinyurl.com/brc-feb21](https://tinyurl.com/brc-feb21)), the  GitHub URL ([https://github.com/ucb-rit/savio-training-intro-fall-2021](https://github.com/ucb-rit/savio-training-intro-fall-2021)), or simply as a [zip file](https://github.com/ucb-rit/savio-training-intro-fall-2021/archive/main.zip).
+The materials for this tutorial are available using git at the short URL ([tinyurl.com/brc-feb21](https://tinyurl.com/brc-oct21)), the  GitHub URL ([https://github.com/ucb-rit/savio-training-intro-fall-2021](https://github.com/ucb-rit/savio-training-intro-fall-2021)), or simply as a [zip file](https://github.com/ucb-rit/savio-training-intro-fall-2021/archive/main.zip).
 
 # Outline
 
@@ -107,7 +107,7 @@ Savio is a Linux cluster - by cluster we mean a set of computers networked toget
 # Login nodes
 
 - Login nodes
-  - Used to access the system when loggin in
+  - Used to access the system when logging in
   - For login and non-intensive interactive work such as:
     - job submission and monitoring
     - basic compilation
@@ -117,7 +117,7 @@ Savio is a Linux cluster - by cluster we mean a set of computers networked toget
 
 - Data transfer nodes
   - For transferring data to/from Savio
-  - This is a notable difference from many other cluster
+  - This is a notable difference from many other clusters
     - Login node: `hpc.brc.berkeley.edu`
     - Data transfer node: `dtn.brc.berkeley.edu`
     - Some applications may look for SFTP via login node
@@ -154,12 +154,11 @@ Savio is a Linux cluster - by cluster we mean a set of computers networked toget
   - `/global/home/groups/SAVIO_GROUPNAME`
     - Per group: 30 GB for FCA, 200 GB for Condo
   - `/global/scratch/users/SAVIO_USERNAME`
-    - 12 TB per user
     - Connected via Infiniband (very fast)
     - Primary data storage during computation
 - All 3 are available from any of the nodes and changes to files on one node will be seen on all the other nodes
 - Large amounts of disk space is available for purchase from the [*condo storage* offering](https://docs-research-it.berkeley.edu/services/high-performance-computing/condos/condo-storage-service/).
-  - The minimum purchase is about $23,000, which provides roughly 448 TB for five years. 
+  - The minimum purchase is about $5,750, which provides roughly 112 TB for five years. 
 
 # Using disk space
 
@@ -183,7 +182,7 @@ More info is available in the slides from Dec. 2019 "Working with Sensitive + Pr
 - To login, you need to have software on your own machine that gives you access to the SSH command
   - These come built-in with Mac (see `Applications -> Utilities -> Terminal`).
   - For Windows, you can use Powershell (or Command Prompt)
-    - Other application such as [MobaXterm](https://mobaxterm.mobatek.net/) may offer more functionality
+    - Other applications such as [MobaXterm](https://mobaxterm.mobatek.net/) may offer more functionality
 - You also need to set up your smartphone or tablet with *Google Authenticator* to generate one-time passwords for you.
 - Here are instructions for [doing this setup, and for logging in](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/logging-brc-clusters/).
 
@@ -367,7 +366,9 @@ rclone copy /global/scratch/users/hannsode/genomes remote_name:genome_sequences 
 
 # Software modules
 
-A lot of software is available on Savio but needs to be loaded from the relevant software module before you can use it. (We do this not to confuse you but to avoid clashes between incompatible software and allow multiple versions of a piece of software to co-exist on the system.)
+A lot of software is available on Savio but needs to be loaded from the relevant software module before you can use it. 
+
+(We do this not to confuse you but to avoid clashes between incompatible software and allow multiple versions of a piece of software to co-exist on the system.)
 
 ```
 module list  # what's loaded?
@@ -389,7 +390,7 @@ Note that a variety of Python packages are available simply by loading the pytho
 
 All computations are done by submitting jobs to the scheduling software that manages jobs on the cluster, called SLURM.
 
-Why is this necessary? Otherwise your jobs would be slowed down by other people's jobs running on the same node. This also allows everyone to fairly share Savio.
+Why is this necessary? Otherwise your jobs would be slowed down by other people's jobs running on the same node. This also allows everyone to share Savio in a fair way.
 
 The basic workflow is:
 
