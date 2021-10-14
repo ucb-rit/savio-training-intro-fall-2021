@@ -32,7 +32,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -102,8 +102,8 @@ October 14, 2021
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
 <p>We’ll do this mostly as a demonstration. We encourage you to login to your account and try out the various examples yourself as we go through them.</p>
-<p>Much of this material is based on the extensive Savio documention we have prepared and continue to prepare, available at <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/" class="uri">https://docs-research-it.berkeley.edu/services/high-performance-computing/</a>.</p>
-<p>The materials for this tutorial are available using git at the short URL (<a href="https://tinyurl.com/brc-oct21">tinyurl.com/brc-feb21</a>), the GitHub URL (<a href="https://github.com/ucb-rit/savio-training-intro-fall-2021" class="uri">https://github.com/ucb-rit/savio-training-intro-fall-2021</a>), or simply as a <a href="https://github.com/ucb-rit/savio-training-intro-fall-2021/archive/main.zip">zip file</a>.</p>
+<p>Much of this material is based on the extensive Savio documention we have prepared and continue to prepare, available at <a href="https://docs-research-it.berkeley.edu/services/high-performance-computing/">https://docs-research-it.berkeley.edu/services/high-performance-computing/</a>.</p>
+<p>The materials for this tutorial are available using git at the short URL (<a href="https://tinyurl.com/brc-oct21">tinyurl.com/brc-oct21</a>), the GitHub URL (<a href="https://github.com/ucb-rit/savio-training-intro-fall-2021">https://github.com/ucb-rit/savio-training-intro-fall-2021</a>), or simply as a <a href="https://github.com/ucb-rit/savio-training-intro-fall-2021/archive/main.zip">zip file</a>.</p>
 </div>
 <div id="outline" class="slide section level1">
 <h1>Outline</h1>
@@ -337,7 +337,7 @@ October 14, 2021
 </ul></li>
 <li>BRC has a new platform for highly sensitive data (P4) called SRDC.</li>
 </ul>
-<p>More info is available in the slides from Dec. 2019 “Working with Sensitive + Protected Data” workshop: <a href="https://tinyurl.com/srdc-dec2019" class="uri">https://tinyurl.com/srdc-dec2019</a> or in <a href="https://docs-research-it.berkeley.edu/services/srdc/">our documentation</a>.</p>
+<p>More info is available in the slides from Dec. 2019 “Working with Sensitive + Protected Data” workshop: <a href="https://tinyurl.com/srdc-dec2019">https://tinyurl.com/srdc-dec2019</a> or in <a href="https://docs-research-it.berkeley.edu/services/srdc/">our documentation</a>.</p>
 </div>
 <div id="logging-in-getting-set-up" class="slide section level1">
 <h1>Logging in: Getting Set Up</h1>
@@ -407,13 +407,13 @@ nano myfile.txt</code></pre>
 <li><p>The example file <code>bayArea.csv</code> is too large to store on Github; you can obtain it <a href="https://www.stat.berkeley.edu/share/paciorek/bayArea.csv">here</a>.</p></li>
 <li><p>SCP is supported in terminal for Mac/Linux and in Powershell/Command Prompt in Windows</p></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># to Savio, while on your local machine</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="fu">scp</span> bayArea.csv hannsode@dtn.brc.berkeley.edu:~/.</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="fu">scp</span> bayArea.csv hannsode@dtn.brc.berkeley.edu:~/data/newName.csv</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="fu">scp</span> bayArea.csv hannsode@dtn.brc.berkeley.edu:/global/scratch/users/paciorek/.</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co"># from Savio, while on your local machine</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="fu">scp</span> hannsode@dtn.brc.berkeley.edu:~/data/newName.csv ~/Documents/.</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># to Savio, while on your local machine</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="fu">scp</span> bayArea.csv hannsode@dtn.brc.berkeley.edu:~/.</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="fu">scp</span> bayArea.csv hannsode@dtn.brc.berkeley.edu:~/data/newName.csv</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="fu">scp</span> bayArea.csv hannsode@dtn.brc.berkeley.edu:/global/scratch/users/paciorek/.</a>
+<a class="sourceLine" id="cb4-5" title="5"></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co"># from Savio, while on your local machine</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="fu">scp</span> hannsode@dtn.brc.berkeley.edu:~/data/newName.csv ~/Documents/.</a></code></pre></div>
 <p>If you can ssh to your local machine or want to transfer files to other systems on to which you can ssh, you can login to the dtn node to execute the scp commands:</p>
 <pre><code>ssh SAVIO_USERNAME@dtn.brc.berkeley.edu
 [SAVIO_USERNAME@dtn ~]$ scp ~/file.csv OTHER_USERNAME@other.domain.edu:~/data/.</code></pre>
@@ -530,7 +530,7 @@ tar -xvzf files.tgz</code></pre>
 <ul>
 <li>Configuration (on dtn): <code>rclone config</code></li>
 <li>Use auto config? -&gt; n</li>
-<li>For Box: install rclone on your PC, then run <code>rclone authorize &quot;box&quot;</code></li>
+<li>For Box: install rclone on your PC, then run <code>rclone authorize "box"</code></li>
 <li>Paste the link into your browser and log in to your CalNet account</li>
 <li>Copy the authentication token and paste into the <code>rclone config</code> prompt on Savio</li>
 </ul>
@@ -550,7 +550,7 @@ tar -xvzf files.tgz</code></pre>
 </ul></li>
 <li>All <em>rclone</em> commands begin with <code>rclone</code> and are then followed by a commands
 <ul>
-<li>The commands are different from bash (i.e., <code>cp</code> in <em>bash</em> vs. <code>copy</code> in rclone)</li>
+<li>The commands are different from bash (i.e., <code>cp</code> in <em>bash</em> vs. <code>copy</code> in rclone)</li>
 </ul></li>
 <li>To reference a file on the remote you add configured remote name followed by a colon followed by the file path
 <ul>
@@ -631,22 +631,22 @@ brc|co_stat|paciorek|savio2|1|||||||||||||savio_lowprio,stat_savio2_normal|stat_
 <h1>Submitting a batch job</h1>
 <p>Let’s see how to submit a simple job. If your job will only use the resources on a single node, you can do the following.</p>
 <p>Here’s an example job script that I’ll run. You’ll need to modify the –account value and possibly the –partition value.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co"># Job name:</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#SBATCH --job-name=test</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co"># Account:</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#SBATCH --account=fc_paciorek</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co"># Partition:</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#SBATCH --partition=savio2</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co"># Wall clock limit (5 minutes here):</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#SBATCH --time=00:05:00</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">## Command(s) to run:</span></a>
-<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="ex">module</span> load python/3.7</a>
-<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="ex">python</span> calc.py <span class="op">&gt;</span><span class="kw">&amp;</span> <span class="ex">calc.out</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" title="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co"># Job name:</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">#SBATCH --job-name=test</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co">#</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="co"># Account:</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co">#SBATCH --account=fc_paciorek</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="co">#</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co"># Partition:</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="co">#SBATCH --partition=savio2</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co">#</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co"># Wall clock limit (5 minutes here):</span></a>
+<a class="sourceLine" id="cb12-12" title="12"><span class="co">#SBATCH --time=00:05:00</span></a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="co">#</span></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">## Command(s) to run:</span></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="ex">module</span> load python/3.7</a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="ex">python</span> calc.py <span class="op">&gt;</span><span class="kw">&amp;</span> <span class="ex">calc.out</span></a></code></pre></div>
 <p>Now let’s submit and monitor the job:</p>
 <pre><code>sbatch job.sh
 
@@ -670,28 +670,28 @@ wwall -j &lt;JOB_ID&gt;</code></pre>
 </ul>
 <p>In addition, in some cases it can make sense to use the <code>--ntasks</code> (or <code>-n</code>) option to indicate the total number of tasks and let the scheduler determine how many nodes and tasks per node are needed. In general <code>--cpus-per-task</code> will be one except when running threaded code.</p>
 <p>Here’s an example job script for a job that uses MPI for parallelizing over multiple nodes:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">#!/bin/bash</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="co"># Job name:</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="co">#SBATCH --job-name=test</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co">#</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="co"># Account:</span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="co">#SBATCH --account=account_name</span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co">#</span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="co"># Partition:</span></a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="co">#SBATCH --partition=partition_name</span></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="co">#</span></a>
-<a class="sourceLine" id="cb16-11" data-line-number="11"><span class="co"># Number of MPI tasks needed for use case (example):</span></a>
-<a class="sourceLine" id="cb16-12" data-line-number="12"><span class="co">#SBATCH --ntasks=40</span></a>
-<a class="sourceLine" id="cb16-13" data-line-number="13"><span class="co">#</span></a>
-<a class="sourceLine" id="cb16-14" data-line-number="14"><span class="co"># Processors per task:</span></a>
-<a class="sourceLine" id="cb16-15" data-line-number="15"><span class="co">#SBATCH --cpus-per-task=1</span></a>
-<a class="sourceLine" id="cb16-16" data-line-number="16"><span class="co">#</span></a>
-<a class="sourceLine" id="cb16-17" data-line-number="17"><span class="co"># Wall clock limit:</span></a>
-<a class="sourceLine" id="cb16-18" data-line-number="18"><span class="co">#SBATCH --time=00:00:30</span></a>
-<a class="sourceLine" id="cb16-19" data-line-number="19"><span class="co">#</span></a>
-<a class="sourceLine" id="cb16-20" data-line-number="20"><span class="co">## Command(s) to run (example):</span></a>
-<a class="sourceLine" id="cb16-21" data-line-number="21"><span class="ex">module</span> load intel openmpi</a>
-<a class="sourceLine" id="cb16-22" data-line-number="22"><span class="ex">mpirun</span> ./a.out</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb16-1" title="1"><span class="co">#!/bin/bash</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="co"># Job name:</span></a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="co">#SBATCH --job-name=test</span></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="co">#</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="co"># Account:</span></a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="co">#SBATCH --account=account_name</span></a>
+<a class="sourceLine" id="cb16-7" title="7"><span class="co">#</span></a>
+<a class="sourceLine" id="cb16-8" title="8"><span class="co"># Partition:</span></a>
+<a class="sourceLine" id="cb16-9" title="9"><span class="co">#SBATCH --partition=partition_name</span></a>
+<a class="sourceLine" id="cb16-10" title="10"><span class="co">#</span></a>
+<a class="sourceLine" id="cb16-11" title="11"><span class="co"># Number of MPI tasks needed for use case (example):</span></a>
+<a class="sourceLine" id="cb16-12" title="12"><span class="co">#SBATCH --ntasks=40</span></a>
+<a class="sourceLine" id="cb16-13" title="13"><span class="co">#</span></a>
+<a class="sourceLine" id="cb16-14" title="14"><span class="co"># Processors per task:</span></a>
+<a class="sourceLine" id="cb16-15" title="15"><span class="co">#SBATCH --cpus-per-task=1</span></a>
+<a class="sourceLine" id="cb16-16" title="16"><span class="co">#</span></a>
+<a class="sourceLine" id="cb16-17" title="17"><span class="co"># Wall clock limit:</span></a>
+<a class="sourceLine" id="cb16-18" title="18"><span class="co">#SBATCH --time=00:00:30</span></a>
+<a class="sourceLine" id="cb16-19" title="19"><span class="co">#</span></a>
+<a class="sourceLine" id="cb16-20" title="20"><span class="co">## Command(s) to run (example):</span></a>
+<a class="sourceLine" id="cb16-21" title="21"><span class="ex">module</span> load intel openmpi</a>
+<a class="sourceLine" id="cb16-22" title="22"><span class="ex">mpirun</span> ./a.out</a></code></pre></div>
 <p>When you write your code, you may need to specify information about the number of cores to use. SLURM will provide a variety of variables that you can use in your code so that it adapts to the resources you have requested rather than being hard-coded.</p>
 <p>Here are some of the variables that may be useful: SLURM_NTASKS, SLURM_CPUS_PER_TASK, SLURM_NODELIST, SLURM_NNODES.</p>
 </div>
@@ -962,7 +962,7 @@ parallel_result</code></pre>
 <ul>
 <li>Check the Status and Announcements page:
 <ul>
-<li><a href="https://research-it.berkeley.edu/services/high-performance-computing/status-and-announcements" class="uri">https://research-it.berkeley.edu/services/high-performance-computing/status-and-announcements</a></li>
+<li><a href="https://research-it.berkeley.edu/services/high-performance-computing/status-and-announcements">https://research-it.berkeley.edu/services/high-performance-computing/status-and-announcements</a></li>
 </ul></li>
 <li>For technical issues and questions about using Savio:
 <ul>
