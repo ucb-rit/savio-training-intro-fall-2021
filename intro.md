@@ -4,9 +4,9 @@
 
 # Upcoming events and hiring
 
- - [Cloud Computing Meetup](https://www.meetup.com/ucberkeley_cloudmeetup/) (monthly) 
+ - [Cloud Computing Meetup](https://www.meetup.com/ucberkeley_cloudmeetup/) (monthly)
 
- - Looking for researchers working with sensitive data as we are building tools and services to support that work. Get in touch for more information. 
+ - Looking for researchers working with sensitive data as we are building tools and services to support that work. Get in touch for more information.
 
  - [Securing Research Data Working Group](https://dlab.berkeley.edu/working-groups/securing-research-data-working-group) (monthly)
 
@@ -72,10 +72,10 @@ This training session will cover the following topics:
     - A collection of really powerful computers (nodes)
     - Some really big, fast hard drives
 - Two types of parallel Computing
-  - Shared memory (OpenMP)
+  - Shared memory (e.g., OpenMP)
     - All computation on the same node
     - Can have shared objects in ram
-  - Distributed memory (MPI)
+  - Distributed memory (e.g., MPI)
     - Computation on multiple nodes
     - Special attention to passing information between nodes
 
@@ -85,8 +85,11 @@ This training session will cover the following topics:
 - All regular Berkeley faculty can request 300,000 service units (roughly core-hours) per year through the [Faculty Computing Allowance (FCA)](https://docs-research-it.berkeley.edu/services/high-performance-computing/getting-account/faculty-computing-allowance/)
 - Researchers can also purchase nodes for their own priority access and gain access to the shared Savio infrastructure and to the ability to *burst* to additional nodes through the [condo cluster program](https://docs-research-it.berkeley.edu/services/high-performance-computing/condos/condo-cluster-service/)
 - Instructors can request an [Instructional Computing Allowance (ICA)](https://docs-research-it.berkeley.edu/services/high-performance-computing/getting-account/instructional-computing-allowance/).
+- The application process has gotten even easier with the introduction of the [MyBRC](https://mybrc.brc.berkeley.edu/), the Berkeley Research Computing Access Management System
+- Please bear in mind that applications have to be manually reviewed before they can be approved.
 
 Faculty/principal investigators can allow researchers working with them to get user accounts with access to the FCA or condo resources available to the faculty member.
+
 
 # System capabilities and hardware
 
@@ -158,7 +161,7 @@ Savio is a Linux cluster - by cluster we mean a set of computers networked toget
     - Primary data storage during computation
 - All 3 are available from any of the nodes and changes to files on one node will be seen on all the other nodes
 - Large amounts of disk space is available for purchase from the [*condo storage* offering](https://docs-research-it.berkeley.edu/services/high-performance-computing/condos/condo-storage-service/).
-  - The minimum purchase is about $5,750, which provides roughly 112 TB for five years. 
+  - The minimum purchase is about $5,750, which provides roughly 112 TB for five years.
 
 # Using disk space
 
@@ -309,11 +312,22 @@ tar -xvzf files.tgz
 
 # Data transfer: Box & bDrive
 
-- Box and bDrive (the Cal branded Google Drive) both provide free, secured, and encrypted content storage of files to Berkeley affiliates  
-  - bDrive provides unlimited storage (for now), Box is currently also available
+- Box and bDrive (the Cal branded Google Drive) both provide free, secured, and encrypted content storage of files to Berkeley affiliates
+  - They are both good options for backup and long-term storage of data that you plan to shuttle in and out of Savio
+  - Box quotas coming into effect October 27th, 2021
+    - 50GB for new individual accounts
+    - 500GB for new Special Purpose Accounts ("SPAs")
+    - Existing accounts will be allowed up to 10% above current storage amount
+  - bDrive provides unlimited storage (for now)
+    - Similar limits to Box are likely for bDrive in the near future
     - bDrive has a maximum file size of 5Tb, Box has a maximum file size of 15 Gb
-    - They are both good options for backup and long-term storage
-      - However, since the UC Berkeley contract with Box ends in 2023 we suggest new users opt for bDrive
+  - These change reflect service provider price increases which may increasingly fall on researchers for **large** datasets
+- Alternative paid options are also available
+  - Cloud storage options include Amazon, Google, Microsoft Azure, and Wasabi
+    - See the [bCloud web page](https://technology.berkeley.edu/services/cloud) for more information
+  - As mentioned earlier, Condo computing contributors can also buy into the condo storage program
+
+# Data transfer: Box & bDrive Access
 
 - You can interact with both services via web browser, and both services provide a desktop app you can use to move and sync files between your computer and the cloud.
   - [bDrive web app](http://bdrive.berkeley.edu/)
@@ -367,7 +381,7 @@ rclone copy /global/scratch/users/hannsode/genomes remote_name:genome_sequences 
 
 # Software modules
 
-A lot of software is available on Savio but needs to be loaded from the relevant software module before you can use it. 
+A lot of software is available on Savio but needs to be loaded from the relevant software module before you can use it.
 
 (We do this not to confuse you but to avoid clashes between incompatible software and allow multiple versions of a piece of software to co-exist on the system.)
 
@@ -705,7 +719,7 @@ Recent jobs (most recent job first):
 7509474:
  - This job ran for a very short amount of time (0:00:16). You may want to check that the output was correct or if it exited because of a problem.
  ```
- 
+
 To see another user's jobs:
 
 ```
@@ -762,7 +776,7 @@ You can also run [parallel computations via an IPython notebook](https://docs-re
 
 # Example use of standard software: Python in parallel
 
-Let's see a basic example of doing an analysis in Python across multiple cores on multiple nodes. We'll use the airline departure data in [bayArea.csv](https://www.stat.berkeley.edu/share/paciorek/bayArea.csv). Similar functionality is [available for R](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/software/using-software/using-r-savio/), for example using the `future` package, 
+Let's see a basic example of doing an analysis in Python across multiple cores on multiple nodes. We'll use the airline departure data in [bayArea.csv](https://www.stat.berkeley.edu/share/paciorek/bayArea.csv). Similar functionality is [available for R](https://docs-research-it.berkeley.edu/services/high-performance-computing/user-guide/software/using-software/using-r-savio/), for example using the `future` package,
 
 Here we'll use the *ipyparallel* package for parallel computing. The example is a bit contrived in that a lot of the time is spent moving data around rather than doing computation, but it should illustrate how to do a few things.
 
